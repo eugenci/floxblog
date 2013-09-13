@@ -1,11 +1,9 @@
 Foxblog::Application.routes.draw do
 
-  devise_for :users do
-    root :to => "devise/sessions#new"
-  end
+  root to: 'posts#index'
+
+  devise_for :user
   resources :users
-
-
   resources :posts
 
   # The priority is based upon order of creation: first created -> highest priority.

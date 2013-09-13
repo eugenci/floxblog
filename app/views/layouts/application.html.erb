@@ -8,7 +8,23 @@
 </head>
 <body>
 
-<%= yield %>
+<div class='navbar'>
+  <div class='navbar-inner'>
+    <%= link_to 'Foxblog', root_path, :class => 'brand' %>
+    <ul class='nav pull-right'>
+      <%- if user_signed_in? %>
+        <li><%= link_to current_user.email, edit_user_registration_path  %></li>
+        <li><%= link_to 'logout', destroy_user_session_path, :method => :delete %></li>
+      <%- else %>
+        <li><%= link_to 'login', new_user_session_path %></li>
+      <%- end%>
+    </ul>
+  </div>
+</div>
+
+<div class='container'>
+  <%= yield %>
+</div>
 
 </body>
 </html>
