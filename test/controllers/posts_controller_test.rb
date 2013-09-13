@@ -1,8 +1,14 @@
 require 'test_helper'
 
+# Positive tests with user signed in
 class PostsControllerTest < ActionController::TestCase
   setup do
-    @post = posts(:one)
+    @user = User.create! email: 'user1@mail.com',
+                         password: 'test1234',
+                         username: 'boo'
+    @post = Post.create! title: 'title1', content: 'content', user: @user
+
+    sign_in @user
   end
 
   test "should get index" do
@@ -18,7 +24,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should create post" do
     assert_difference('Post.count') do
-      post :create, post: { content: @post.content, title: @post.title }
+      post :create, post: { content: 'some content', title: 'title 1' }
     end
 
     assert_redirected_to post_path(assigns(:post))
