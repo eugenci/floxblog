@@ -2,11 +2,12 @@ require 'test_helper'
 
 # Positive tests with user signed in
 class PostsControllerTest < ActionController::TestCase
+
+  include TestDryUtils
+
   setup do
-    @user = User.create! email: 'user1@mail.com',
-                         password: 'test1234',
-                         username: 'boo'
-    @post = Post.create! title: 'title1', content: 'content', user: @user
+    @user = create_sample_user
+    @post = create_sample_post(@user)
 
     sign_in @user
   end

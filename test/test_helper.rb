@@ -17,3 +17,17 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 end
+
+module TestDryUtils
+  def create_sample_user
+    User.create! email: 'user1@mail.com',
+      password: 'test1234',
+      username: 'boo'
+  end
+
+  def create_sample_post(user)
+    Post.create! title: 'title1', 
+      content: 'content', 
+      user: user
+  end
+end
