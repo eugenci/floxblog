@@ -12,6 +12,7 @@
 * Configuration
 
   rake db:migrate
+
   rake db:seed
 
 * To run the test suite
