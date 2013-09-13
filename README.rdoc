@@ -3,8 +3,6 @@
   Blog application example written in Rails4 + Devise
 
 
-Things you may want to cover:
-
 * Requires ruby version >= 1.9.3
 
 * System dependencies
@@ -13,10 +11,9 @@ Things you may want to cover:
 
 * Configuration
 
-* Database creation
-
   rake db:migrate
+  rake db:seed
 
-* How to run the test suite
+* To run the test suite
   
   rake test
