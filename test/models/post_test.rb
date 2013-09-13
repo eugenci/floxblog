@@ -20,8 +20,8 @@ class PostTest < ActiveSupport::TestCase
 
 
   test 'title attribute should be unique' do
-    post1 = Post.new title: 'boo', content: 'blah', user: @user
-    post2 = Post.new title: 'boo', content: 'blah2', user: @user
+    post1 = @user.posts.build title: 'boo', content: 'blah'
+    post2 = @user.posts.build title: 'boo', content: 'blah2'
 
     post1.save!
 

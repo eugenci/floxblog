@@ -26,8 +26,6 @@ module TestDryUtils
   end
 
   def create_sample_post(user, title = 'title')
-    Post.create! title: title,
-      content: 'content', 
-      user: user
+    user.posts.create! title: title, content: 'content'
   end
 end
