@@ -13,7 +13,7 @@ class PostFlowsTest < ActionDispatch::IntegrationTest
     get "/"
     assert_redirected_to new_user_session_path, 'mmm, it should redirect me to user login'
 
-    post user_session_path, user: { email: 'user1@mail.com', password: 'test1234'}
+    post user_session_path, user: { email: @user.email, password: 'test1234'}
     assert_redirected_to root_path
 
 

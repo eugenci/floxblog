@@ -6,10 +6,27 @@ class PostsControllerTest < ActionController::TestCase
   include TestDryUtils
 
   setup do
-    @user = create_sample_user
+    @user  = create_sample_user
+    @user2 = create_sample_user('user2@mail.com')
     @post = create_sample_post(@user)
 
     sign_in @user
+  end
+
+  test "should list only posts currently signed in user" do
+    sign_out @user
+    sign_in @user2
+    create_sample_post(@user2, 'title2')
+    create_sample_post(@user2, 'title3')
+    create_sample_post(@user2, 'title4')
+    get :index
+    assert_response :success
+
+    posts_of_user2 = assigns(:posts)
+
+    assert_equal 3, posts_of_user2.size, 'Instead should be listed only 3 posts of user2'
+    assert_equal 1, posts_of_user2.load.map(&:user_id).uniq.size, 'All posts belongs indeed only to one user'
+
   end
 
   test "should get index" do
